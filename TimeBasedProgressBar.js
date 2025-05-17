@@ -27,6 +27,7 @@ function RunStartMain() {
 	ProgressBarRunStart(document.getElementsByClassName("progressBarMain")[0], "main");
 }
 
+var lastWindowHeight = window.innerHeight;
 
 
 function ResetPositionsBuffer(headings, type) {
@@ -105,6 +106,18 @@ function ResetPositionsMain(headings) {
 	return totalTime;
 }
 
+function Reset(headings, type) {
+    if (type == "full") {
+		return totalTime = ResetPositionsFull(headings);
+	}
+	else if (type == "bonus") {
+		return totalTime = ResetPositionsBonus(headings);
+	}
+	else if (type == "main") {
+		return totalTime = ResetPositionsMain(headings);
+	}
+}
+
 
 function ProgressBarRunStart(div, type) {
 	var totalTime = 0;
@@ -116,15 +129,7 @@ function ProgressBarRunStart(div, type) {
 	var arrow = window.innerHeight * document.getElementsByClassName("fa-long-arrow-alt-left")[0].getBoundingClientRect().y * posAlteration / 1313;
 	var toggles = document.getElementsByClassName("elementor-toggle");
 
-	if (type == "full") {
-		totalTime = ResetPositionsFull(headings);
-	}
-	else if (type == "bonus") {
-		totalTime = ResetPositionsBonus(headings);
-	}
-	else if (type == "main") {
-		totalTime = ResetPositionsMain(headings);
-	}
+    totalTime = Reset(headings);
 
 	for (let i = 0; i < toggles.length; i++) {
 		toggles[i].addEventListener('click', () => {
@@ -160,6 +165,8 @@ function ProgressBarRunStart(div, type) {
 
 
 function RunLoop(div, progressBarPercentage, type, currentPos, posAlteration, totalTime) {
+    if (lastWindowHeight != window.innerHeight) totalTime = Reset(document.getElementsByClassName("elementor-widget-menu-anchor"), type);
+
 	if (type == "full") {
 		var headingsPos = headingsPosFull;
 		var estimatedTimes = estimatedTimesFull;
