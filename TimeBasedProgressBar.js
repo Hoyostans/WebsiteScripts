@@ -1,3 +1,5 @@
+console.log("Functional");
+
 setTimeout(RunStartFull
 
 	, 800);
@@ -9,16 +11,19 @@ setTimeout(RunStartBonus
 	, 800);
 
 function RunStartFull() {
+    console.log("Start Full");
 	ProgressBarRunStart(document.getElementsByClassName("progressBarFull")[0], "full");
 }
 
 
 function RunStartBonus() {
+    console.log("Start Bonus");
 	ProgressBarRunStart(document.getElementsByClassName("progressBarBonus")[0], "bonus");
 }
 
 
 function RunStartMain() {
+    console.log("Start Main");
 	ProgressBarRunStart(document.getElementsByClassName("progressBarMain")[0], "main");
 }
 
