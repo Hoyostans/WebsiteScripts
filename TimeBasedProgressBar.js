@@ -168,6 +168,7 @@ function RunLoop(div, progressBarPercentage, type, currentPos, posAlteration, to
     if (lastWindowHeight != window.innerHeight) {
         lastWindowHeight = window.innerHeight;
         totalTime = Reset(document.getElementsByClassName("elementor-widget-menu-anchor"), type);
+        running = true;
     }
 
     if (type == "full") {
