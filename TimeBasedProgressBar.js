@@ -130,7 +130,7 @@ function ProgressBarRunStart(div, type) {
     var arrow = window.innerHeight * document.getElementsByClassName("fa-long-arrow-alt-left")[0].getBoundingClientRect().y * posAlteration / 1313;
     var toggles = document.getElementsByClassName("elementor-toggle");
 
-    totalTime = Reset(headings);
+    totalTime = Reset(headings, type);
 
     for (let i = 0; i < toggles.length; i++) {
         toggles[i].addEventListener('click', () => {
