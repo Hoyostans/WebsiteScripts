@@ -108,14 +108,15 @@ function ResetPositionsMain(headings) {
 
 function Reset(headings, type) {
     if (type == "full") {
-        return totalTime = ResetPositionsFull(headings);
+        var totalTime = ResetPositionsFull(headings);
     }
     else if (type == "bonus") {
-        return totalTime = ResetPositionsBonus(headings);
+        var totalTime = ResetPositionsBonus(headings);
     }
     else if (type == "main") {
-        return totalTime = ResetPositionsMain(headings);
+        var totalTime = ResetPositionsMain(headings);
     }
+    return totalTime;
 }
 
 
