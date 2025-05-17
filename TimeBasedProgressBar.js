@@ -165,11 +165,15 @@ function ProgressBarRunStart(div, type) {
 
 
 function RunLoop(div, progressBarPercentage, type, currentPos, posAlteration, totalTime) {
+
+    /* ### Causes errors, needs more testing ###
+
     if (lastWindowHeight != window.innerHeight) {
         lastWindowHeight = window.innerHeight;
         totalTime = Reset(document.getElementsByClassName("elementor-widget-menu-anchor"), type);
         running = true;
     }
+    */
 
     if (type == "full") {
         var headingsPos = headingsPosFull;
