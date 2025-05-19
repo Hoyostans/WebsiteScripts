@@ -121,7 +121,7 @@ function Reset(headings, type) {
 
 
 function ProgressBarRunStart(div, type) {
-    if (div != undefined) {
+    if (typeof div !== "undefined" && div != undefined) {
 
         var totalTime = 0;
         var running = true;
