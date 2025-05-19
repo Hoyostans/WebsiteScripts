@@ -121,60 +121,63 @@ function Reset(headings, type) {
 
 
 function ProgressBarRunStart(div, type) {
-    var totalTime = 0;
-    var running = true;
+    if (div != undefined) {
 
-    var estimatedTimeBuffer = 0;
-    var headings = document.getElementsByClassName("elementor-widget-menu-anchor");
-    var posAlteration = -0.878640777;
-    var arrow = window.innerHeight * document.getElementsByClassName("fa-long-arrow-alt-left")[0].getBoundingClientRect().y * posAlteration / 1313;
-    var toggles = document.getElementsByClassName("elementor-toggle");
+        var totalTime = 0;
+        var running = true;
 
-    totalTime = Reset(headings, type);
+        var estimatedTimeBuffer = 0;
+        var headings = document.getElementsByClassName("elementor-widget-menu-anchor");
+        var posAlteration = -0.878640777;
+        var arrow = window.innerHeight * document.getElementsByClassName("fa-long-arrow-alt-left")[0].getBoundingClientRect().y * posAlteration / 1313;
+        var toggles = document.getElementsByClassName("elementor-toggle");
 
-    for (let i = 0; i < toggles.length; i++) {
-        toggles[i].addEventListener('click', () => {
-            if (typeof ResetPositionsBuffer == "function") {
-                ResetPositionsBuffer(headings, type);
-            }
-        });
+        totalTime = Reset(headings, type);
+
+        for (let i = 0; i < toggles.length; i++) {
+            toggles[i].addEventListener('click', () => {
+                if (typeof ResetPositionsBuffer == "function") {
+                    ResetPositionsBuffer(headings, type);
+                }
+            });
+        }
+
+        var progressBar = div.getElementsByClassName("current-progress")[0];
+        var barAmount = 201.062
+        var lastProgressBarSize = barAmount
+        var scrollPos = -201.062;
+
+        if (div.getElementsByClassName("current-progress-percentage")[0].length == 0) {
+            progressBar.parentNode.parentNode.innerHTML = progressBar.parentNode.parentNode.innerHTML.toString() + "<div class=\"current-progress-percentage\">0%</div>";
+        }
+
+        var progressBarPercentage = div.getElementsByClassName("current-progress-percentage")[0];
+
+
+        progressBarPercentage.style = "color: #FFFFFF";
+
+        var a = 0;
+        var currentPos = window.scrollY - arrow;
+
+        progressBar.style = "stroke-dasharray: " + progressBarSize + "; stroke-dashoffset: " + scrollPos.toString() + "; display: block; ";
+        progressBarPercentage.innerText = (Math.round((estimatedTimeBuffer / totalTime) * 100)).toString() + "%";
+
+        setInterval(RunLoop, 125, div, progressBarPercentage, type, currentPos, posAlteration, totalTime);
     }
-
-    var progressBar = div.getElementsByClassName("current-progress")[0];
-    var barAmount = 201.062
-    var lastProgressBarSize = barAmount
-    var scrollPos = -201.062;
-
-    if (div.getElementsByClassName("current-progress-percentage")[0].length == 0) {
-        progressBar.parentNode.parentNode.innerHTML = progressBar.parentNode.parentNode.innerHTML.toString() + "<div class=\"current-progress-percentage\">0%</div>";
-    }
-
-    var progressBarPercentage = div.getElementsByClassName("current-progress-percentage")[0];
-
-
-    progressBarPercentage.style = "color: #FFFFFF";
-
-    var a = 0;
-    var currentPos = window.scrollY - arrow;
-
-    progressBar.style = "stroke-dasharray: " + progressBarSize + "; stroke-dashoffset: " + scrollPos.toString() + "; display: block; ";
-    progressBarPercentage.innerText = (Math.round((estimatedTimeBuffer / totalTime) * 100)).toString() + "%";
-
-    setInterval(RunLoop, 125, div, progressBarPercentage, type, currentPos, posAlteration, totalTime);
 }
 
 
 
 function RunLoop(div, progressBarPercentage, type, currentPos, posAlteration, totalTime) {
 
-    /* ### Causes errors, needs more testing ###
+    /* ### Causes errors, needs more testing ### */
 
     if (lastWindowHeight != window.innerHeight) {
         lastWindowHeight = window.innerHeight;
         totalTime = Reset(document.getElementsByClassName("elementor-widget-menu-anchor"), type);
         running = true;
     }
-    */
+
 
     if (type == "full") {
         var headingsPos = headingsPosFull;
