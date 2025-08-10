@@ -1,6 +1,8 @@
-document.getElementById("inputButton").onclick = SearchCharacters();
+const searchCharacters = SearchCharacters();
+document.getElementById("inputButton").onclick = searchCharacters;
 
 console.log("Started");
+
 
 async function FetchJsonData(requestURL, type) {
 
