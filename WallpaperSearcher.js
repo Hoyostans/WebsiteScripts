@@ -1,8 +1,4 @@
 
-
-var repo = "HYSArchives/GGZWallpapers";
-
-
 async function FetchJsonData(requestURL, type) {
 
     let request = new Request(requestURL);
