@@ -55,6 +55,7 @@ function SearchCharacters() {
         var output = [];
 
         var newCharactersBuffer = [];
+        var originalInput = [];
 
             <!--noformat on-->
             let a = 0;
@@ -62,8 +63,8 @@ function SearchCharacters() {
         for (let i = 0; i < charactersBuffer.length; i++) {
             let characterItem = charactersBuffer[i];
             if (!(redirKeys.includes(characterItem)) && !(charKeys.includes(characterItem))) {
+                originalInput.push(capitalizeFirstLetter(characterItem, true));
                 characterItem = capitalizeFirstLetter(characterItem);
-
             }
             newCharactersBuffer.push(characterItem);
         }
@@ -123,16 +124,15 @@ function SearchCharacters() {
                 output.push(characterData[character][o]);
             }
         }<!--noformat off-->
-            ProcessOutput(output, characters, redirects);
+            ProcessOutput(output, characters, redirects, originalInput);
     }
 
 
 
 }
 
-function ProcessOutput(outputOriginal, originalGivenCharacters, redirects) {
+function ProcessOutput(outputOriginal, givenCharacters, redirects, originalInput) {
   <!--noformat on-->
-        let givenCharacters = originalGivenCharacters;
     let spawnerDivLen = divspawner.childElementCount;
     for (let i = 1; i < spawnerDivLen; i++) {
         divspawner.removeChild(divspawner.lastChild);
@@ -193,7 +193,7 @@ function ProcessOutput(outputOriginal, originalGivenCharacters, redirects) {
         output = chosenCharacterData[givenCharacters[0]];
     }
     if (fixedSearch) {
-        output = FixedSearchProcess(output, originalGivenCharacters)
+        output = FixedSearchProcess(output, originalInput)
     }
     output.sort();
     let processed = [];
@@ -279,18 +279,19 @@ async function CreateDiv(output, i) {
 }<!--noformat off-->
 
 
-    function capitalizeFirstLetter(val) {
+    function capitalizeFirstLetter(val, spaceSplit=false) {
         let items = val.split(" ");
         let output = [];
       <!--noformat on-->
-  for (let i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
             output.push(String(items[i]).charAt(0).toUpperCase() + String(items[i]).slice(1).toLowerCase());
 
         }
   <!--noformat off-->
 
-
-      return output.join("");
+        if (spaceSplit) return output.join(" ");
+        else return output.join("");
+      
     }
 
 function SetupFormRedir(thisdiv) {
