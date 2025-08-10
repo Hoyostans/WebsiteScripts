@@ -43,6 +43,13 @@ function SearchCharacters() {
     console.log("Started Search");
     let item = document.getElementById("nameInput").value;
     if (item != "") {
+        if (item.includes("|")) {
+            fixedSearch = true;
+            item = item.replaceAll("|","");
+        }
+        else {
+            fixedSearch = false;
+        }
         var charactersBuffer = item.replaceAll(" ,", ",").replaceAll(", ", ",").split(",");
         var characters = [];
         var output = [];
@@ -52,12 +59,6 @@ function SearchCharacters() {
             <!--noformat on-->
             let a = 0;
         console.log(charactersBuffer);
-        if (charactersBuffer.includes("|")) {
-            fixedSearch = true;
-        }
-        else {
-            fixedSearch = false;
-        }
         for (let i = 0; i < charactersBuffer.length; i++) {
             let characterItem = charactersBuffer[i];
             if (!(redirKeys.includes(characterItem)) && !(charKeys.includes(characterItem))) {
