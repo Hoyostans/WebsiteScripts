@@ -1,4 +1,4 @@
-var searchCharacters = SearchCharacters();
+searchCharacters = SearchCharacters();
 document.getElementById("inputButton").onclick = searchCharacters;
 
 console.log("Started");
@@ -34,12 +34,12 @@ async function FetchJsonData(requestURL, type) {
 FetchJsonData("https://raw.githubusercontent.com/" + repo + "1/refs/heads/main/characterToFile.json", "characterData");
 FetchJsonData("https://raw.githubusercontent.com/" + repo + "1/refs/heads/main/fileData.json", "fileData");
 FetchJsonData("https://raw.githubusercontent.com/" + repo + "1/refs/heads/main/characterRedirects.json", "characterRedirects");
-var divtemplatebase = SetupFormRedir(document.getElementsByClassName("divholder")[0]);
-var divspawner = document.getElementsByClassName("divspawner")[0];
-var divtemplate = divtemplatebase.cloneNode(true);
+divtemplatebase = SetupFormRedir(document.getElementsByClassName("divholder")[0]);
+divspawner = document.getElementsByClassName("divspawner")[0];
+divtemplate = divtemplatebase.cloneNode(true);
 divtemplatebase.remove();
 
-var fixedSearch = false;
+fixedSearch = false;
 
 
 
