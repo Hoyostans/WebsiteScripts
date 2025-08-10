@@ -1,4 +1,4 @@
-const searchCharacters = SearchCharacters();
+var searchCharacters = SearchCharacters();
 document.getElementById("inputButton").onclick = searchCharacters;
 
 console.log("Started");
