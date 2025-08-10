@@ -1,3 +1,6 @@
+document.getElementById("inputButton").onclick = SearchCharacters();
+
+console.log("Started");
 
 async function FetchJsonData(requestURL, type) {
 
@@ -39,6 +42,7 @@ var fixedSearch = false;
 
 
 function SearchCharacters() {
+    console.log("Started Search");
     let item = document.getElementById("nameInput").value;
     if (item != "") {
         var charactersBuffer = item.replaceAll(" ,", ",").replaceAll(", ", ",").split(",");
